@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>গো-লার্নিং | চ্যাপ্টার নোটস</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #5D5FEF;
+      --secondary-color: #4F46E5;
+      --accent-color: #F59E0B;
+      --text-dark: #1F2937;
+      --bg-light: #F9FAFB;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 7px 17px; /* প্যাডিং কমানো হয়েছে */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      margin: 0;
+    }
+
+    a.btn-link {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    a.btn-link:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .chapter-title {
+      text-align: center;
+      margin: 40px 0 15px;
+    }
+
+    .btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-color);
+      transform: scale(1.05);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 80vh;
+      border: 3px solid var(--primary-color);
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(93, 95, 239, 0.5);
+    }
+
+    .lightbox-nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 90%;
+      margin-top: 20px;
+    }
+
+    .lightbox-btn {
+      font-size: 2rem;
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .lightbox-btn:hover {
+      background: var(--accent-color);
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 2rem;
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+    }
+
+    .image-counter {
+      color: white;
+      margin-top: 15px;
+      font-size: 1rem;
+      background: rgba(0,0,0,0.5);
+      padding: 5px 15px;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Go Learning</h2>
+    <a href="index.html" class="btn-link">back to home</a>
+  </header>
+
+  <section class="chapter-container">
+    <div class="container">
+      <!-- Chapter 1 -->
+      <div class="chapter-title"><h2>ভৌত রাশি ও পরিমাপ</h2></div>
+      <div style="text-align: center; margin-bottom: 30px;">
+        <button class="btn" onclick="openLightbox('chapter1', 0)">নোট দেখতে ক্লিক করো</button>
+      </div>
+
+      <!-- Chapter 2 -->
+      <div class="chapter-title"><h2>ভেক্টর</h2></div>
+      <div style="text-align: center; margin-bottom: 30px;">
+        <button class="btn" onclick="openLightbox('chapter2', 0)">নোট দেখতে ক্লিক করো</button>
+      </div>
+
+      <!-- Chapter 3 -->
+      <div class="chapter-title"><h2>গতি</h2></div>
+      <div style="text-align: center; margin-bottom: 30px;">
+        <button class="btn" onclick="openLightbox('chapter3', 0)">নোট দেখতে ক্লিক করো</button>
+      </div>
+
+      <!-- Chapter 4 -->
+      <div class="chapter-title"><h2>নিউটনের গতি সূত্র</h2></div>
+      <div style="text-align: center; margin-bottom: 30px;">
+        <button class="btn" onclick="openLightbox('chapter4', 0)">নোট দেখতে ক্লিক করো</button>
+      </div>
+
+      <!-- Chapter 5 -->
+      <div class="chapter-title"><h2>বল</h2></div>
+      <div style="text-align: center; margin-bottom: 30px;">
+        <button class="btn" onclick="openLightbox('chapter5', 0)">নোট দেখতে ক্লিক করো</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button class="close-lightbox" onclick="closeLightbox()">×</button>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Note Image" />
+    <div class="lightbox-nav">
+      <button class="lightbox-btn" onclick="changeImage(-1)">&#10094;</button>
+      <button class="lightbox-btn" onclick="changeImage(1)">&#10095;</button>
+    </div>
+    <div id="image-counter" class="image-counter">1/1</div>
+  </div>
+
+  <script>
+    const chapterImages = {
+      chapter1: ["chapter1-1.jpg", "chapter1-2.jpg", "chapter1-3.jpg", "chapter1-4.jpg", "chapter1-5.jpg", "chapter1-6.jpg", "chapter1-7.jpg", "chapter1-8.jpg", "chapter1-9.jpg", "chapter1-10.jpg"],
+      chapter2: ["chapter2-1.jpg", "chapter2-2.jpg", "chapter2-3.jpg", "chapter2-4.jpg", "chapter2-5.jpg", "chapter2-6.jpg", "chapter2-7.jpg", "chapter2-8.jpg"],
+      chapter3: ["chapter3-1.jpg", "chapter3-2.jpg", "chapter3-3.jpg", "chapter3-4.jpg", "chapter3-5.jpg", "chapter3-6.jpg", "chapter3-7.jpg", "chapter3-8.jpg", "chapter3-9.jpg", "chapter3-10.jpg", "chapter3-11.jpg", "chapter3-12.jpg"],
+      chapter4: ["chapter4-1.jpg", "chapter4-2.jpg", "chapter4-3.jpg", "chapter4-4.jpg", "chapter4-5.jpg"],
+      chapter5: ["chapter5-1.jpg", "chapter5-2.jpg", "chapter5-3.jpg", "chapter5-4.jpg", "chapter5-5.jpg"]
+    };
+
+    let currentChapter = '';
+    let currentIndex = 0;
+
+    function openLightbox(chapter, index) {
+      currentChapter = chapter;
+      currentIndex = index;
+      updateLightboxImage();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function changeImage(direction) {
+      const images = chapterImages[currentChapter];
+      currentIndex += direction;
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      if (currentIndex >= images.length) currentIndex = 0;
+      updateLightboxImage();
+    }
+
+    function updateLightboxImage() {
+      const img = document.getElementById('lightbox-img');
+      img.src = chapterImages[currentChapter][currentIndex];
+      document.getElementById('image-counter').innerText = `${currentIndex + 1}/${chapterImages[currentChapter].length}`;
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (document.getElementById('lightbox').style.display === 'flex') {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') changeImage(-1);
+        if (e.key === 'ArrowRight') changeImage(1);
+      }
+    });
+  </script>
+</body>
+</html>
